@@ -33,57 +33,6 @@ import (
 	"os"
 )
 
-var encodingNames = []string{
-	"CodePage037",
-	"CodePage1047",
-	"CodePage1140",
-	"CodePage437",
-	"CodePage850",
-	"CodePage852",
-	"CodePage855",
-	"CodePage858",
-	"CodePage860",
-	"CodePage862",
-	"CodePage863",
-	"CodePage865",
-	"CodePage866",
-	"ISO8859_1",
-	"ISO8859_10",
-	"ISO8859_13",
-	"ISO8859_14",
-	"ISO8859_15",
-	"ISO8859_16",
-	"ISO8859_2",
-	"ISO8859_3",
-	"ISO8859_4",
-	"ISO8859_5",
-	"ISO8859_6",
-	"ISO8859_7",
-	"ISO8859_8",
-	"ISO8859_9",
-	"KOI8R",
-	"KOI8U",
-	"Macintosh",
-	"MacintoshCyrillic",
-	"Windows1250",
-	"Windows1251",
-	"Windows1252",
-	"Windows1253",
-	"Windows1254",
-	"Windows1255",
-	"Windows1256",
-	"Windows1257",
-	"Windows1258",
-	"Windows874",
-}
-
-func printEncodingNamesOld() {
-	for i, e := range encodingNames {
-		fmt.Printf("%d:%s, ", i, e)
-	}
-	fmt.Printf("\n")
-}
-
 func PrintEncodingNames() {
 	fmt.Printf("List of canonical encoding names: ")
 	comma := ""
@@ -109,103 +58,12 @@ func GetEncodingArgument(i int) (enc encoding.Encoding) {
 	}
 	return enc
 }
-func getDecoderOld(name string) *encoding.Decoder {
 
-	var d *encoding.Decoder
-	switch {
-	case name == "CodePage037":
-		d = charmap.CodePage037.NewDecoder()
-	case name == "CodePage1047":
-		d = charmap.CodePage1047.NewDecoder()
-	case name == "CodePage1140":
-		d = charmap.CodePage1140.NewDecoder()
-	case name == "CodePage437":
-		d = charmap.CodePage437.NewDecoder()
-	case name == "CodePage850":
-		d = charmap.CodePage850.NewDecoder()
-	case name == "CodePage852":
-		d = charmap.CodePage852.NewDecoder()
-	case name == "CodePage855":
-		d = charmap.CodePage855.NewDecoder()
-	case name == "CodePage858":
-		d = charmap.CodePage858.NewDecoder()
-	case name == "CodePage860":
-		d = charmap.CodePage860.NewDecoder()
-	case name == "CodePage862":
-		d = charmap.CodePage862.NewDecoder()
-	case name == "CodePage863":
-		d = charmap.CodePage863.NewDecoder()
-	case name == "CodePage865":
-		d = charmap.CodePage865.NewDecoder()
-	case name == "CodePage866":
-		d = charmap.CodePage866.NewDecoder()
-	case name == "ISO8859_1":
-		d = charmap.ISO8859_1.NewDecoder()
-	case name == "ISO8859_10":
-		d = charmap.ISO8859_10.NewDecoder()
-	case name == "ISO8859_13":
-		d = charmap.ISO8859_13.NewDecoder()
-	case name == "ISO8859_14":
-		d = charmap.ISO8859_14.NewDecoder()
-	case name == "ISO8859_15":
-		d = charmap.ISO8859_15.NewDecoder()
-	case name == "ISO8859_16":
-		d = charmap.ISO8859_16.NewDecoder()
-	case name == "ISO8859_2":
-		d = charmap.ISO8859_2.NewDecoder()
-	case name == "ISO8859_3":
-		d = charmap.ISO8859_3.NewDecoder()
-	case name == "ISO8859_4":
-		d = charmap.ISO8859_4.NewDecoder()
-	case name == "ISO8859_5":
-		d = charmap.ISO8859_5.NewDecoder()
-	case name == "ISO8859_6":
-		d = charmap.ISO8859_6.NewDecoder()
-	case name == "ISO8859_7":
-		d = charmap.ISO8859_7.NewDecoder()
-	case name == "ISO8859_8":
-		d = charmap.ISO8859_8.NewDecoder()
-	case name == "ISO8859_9":
-		d = charmap.ISO8859_9.NewDecoder()
-	case name == "KOI8R":
-		d = charmap.KOI8R.NewDecoder()
-	case name == "KOI8U":
-		d = charmap.KOI8U.NewDecoder()
-	case name == "Macintosh":
-		d = charmap.Macintosh.NewDecoder()
-	case name == "MacintoshCyrillic":
-		d = charmap.MacintoshCyrillic.NewDecoder()
-	case name == "Windows1250":
-		d = charmap.Windows1250.NewDecoder()
-	case name == "Windows1251":
-		d = charmap.Windows1251.NewDecoder()
-	case name == "Windows1252":
-		d = charmap.Windows1252.NewDecoder()
-	case name == "Windows1253":
-		d = charmap.Windows1253.NewDecoder()
-	case name == "Windows1254":
-		d = charmap.Windows1254.NewDecoder()
-	case name == "Windows1255":
-		d = charmap.Windows1255.NewDecoder()
-	case name == "Windows1256":
-		d = charmap.Windows1256.NewDecoder()
-	case name == "Windows1257":
-		d = charmap.Windows1257.NewDecoder()
-	case name == "Windows1258":
-		d = charmap.Windows1258.NewDecoder()
-	case name == "Windows874":
-		d = charmap.Windows874.NewDecoder()
-	default:
-		HelpPrg("Unknown encoding")
-	}
-	return d
-}
-
-// Readline  returns a single line (without the ending \n) from the input buffered reader.
+// ReadLine returns a single line (without the ending \n) from the input buffered reader.
 // An error is returned if there is an error with the buffered reader.
 func ReadLine(r *bufio.Reader) (string, error) {
 	var (
-		isPrefix bool  = true
+		isPrefix       = true
 		err      error = nil
 		line, ln []byte
 	)
