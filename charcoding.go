@@ -108,7 +108,7 @@ func HelpPrg(errorMsg string) {
 	//prg := os.Args[0]
 	prg := "toUTF8"
 	multiline := ` Character encoding conversion to UTF8 from another char encoding.
- (c) 2022-02-01 Josef Chlachula ver 0.1.0
+ (c) 2022-02-01 Josef Chlachula ver 0.1.1
  Utilize standard input output pipe and/or file input and output. 
 Usage:
  %s -h ... HelpPrg text
